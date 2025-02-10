@@ -3,7 +3,6 @@ import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import styles from "@/app/page.module.css";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 
 
 import axios from "axios";
@@ -17,23 +16,10 @@ type Post = {
     url?: string;
     published?: boolean;
 };
-
-
-
-// const ProductList = (data) => {
-//     const { title, html } = data.data;
-//     return (
-// <div className={styles['blog-editor']}>
-//     <div className={styles['blog-content']} dangerouslySetInnerHTML={{ __html: html }} />
-// </div>
-//     )
-// }
-
 export default function BlogPage() {
     const params = useParams<{ slug: string }>();
 
     const [post, setPost] = useState<Post | null>(null);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -48,7 +34,7 @@ export default function BlogPage() {
                 setError(error.message);
             })
             .finally(function () {
-                setLoading(false);
+                // setLoading(false);
             });
     }, [params.slug]);
 
@@ -65,7 +51,7 @@ export default function BlogPage() {
                         <div className={`${styles.wrapper} ${styles['blog-post']}`}>
 
                             <div className={styles['blog-editor']}>
-                                <div className={styles['blog-content']} dangerouslySetInnerHTML={{ __html: post?.content }} />
+                                <div className={styles['blog-content']} dangerouslySetInnerHTML={{ __html: post?.content || '' }} />
                             </div>
 
 

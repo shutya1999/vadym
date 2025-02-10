@@ -42,7 +42,7 @@ export default function EditPage() {
     if (error) return <p>{error}</p>;
 
     const handleFormSubmit = async (data: Post) => {
-        axios.put(`${process.env.NEXT_PUBLIC_API_URL}posts/id/${params.id}`, data)
+        axios.patch(`${process.env.NEXT_PUBLIC_API_URL}posts/id/${params.id}`, data)
             .then(function (response) {
                 if (response.status === 200) {
                     toast.success("Статтю успішно відредаговано!");

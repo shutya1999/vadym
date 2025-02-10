@@ -4,13 +4,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 const client = new PrismaClient()
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest) {
     try {
-        const id = Number(params.id);
+        const id = req.nextUrl.pathname.split('/').pop();
+        
 
         const post = await client.post.findFirst({
             where: {
-                id: id,
+                id: Number(id),
             },
         });
 
@@ -27,14 +28,18 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
 }
 
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+// export async function GET(request: NextRequest, { params }: { params: Promise<{ slug: string }> }): Promise<NextResponse>
+
+export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }): Promise<NextResponse> {
     try {
-        const id = Number(params.id);
+        const { id } = await params;
+        
+        // const id = Number(params.id);
         const body = await req.json(); // Отримуємо дані з тіла запиту
 
         // Перевіряємо, чи існує пост із цим ID
         const existingPost = await client.post.findUnique({
-            where: { id: id },
+            where: { id: Number(id) },
         });
 
         if (!existingPost) {
@@ -43,7 +48,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 
         // Оновлення поста з отриманими даними
         const updatedPost = await client.post.update({
-            where: { id: id },
+            where: { id: Number(id) },
             data: {
                 title: body.title || existingPost.title,
                 content: body.content || existingPost.content,
@@ -53,7 +58,8 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
         });
 
         return NextResponse.json(updatedPost, { status: 200 });
-    } catch (error) {
+
+    } catch (error: unknown) {
         if (error instanceof Prisma.PrismaClientValidationError) {
             return NextResponse.json({ message: "Помилка валідації", details: error.message }, { status: 400 });
         } else if (error instanceof Prisma.PrismaClientKnownRequestError) {
@@ -61,24 +67,26 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
                 return NextResponse.json({ message: "Такий запис вже існує", details: error.meta }, { status: 400 });
             }
         }
-        return NextResponse.json({ message: "Внутрішня помилка сервера", error: error.message });
+        return NextResponse.json({ message: "Внутрішня помилка сервера"});
     }
 }
 
 
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest) {
     try {
-        const id = Number(params.id);
+        const id = req.nextUrl.pathname.split('/').pop();
+        // const id = Number(params.id);
 
         await client.post.delete({
             where: {
-                id: id,
+                id: Number(id),
             },
         });
 
         return NextResponse.json('Статтю видалено', { status: 200 });
     } catch (error) {
+        console.log(error);
         return NextResponse.json({ message: 'Не влалося видалити статтю' }, { status: 500 });
     }
 }

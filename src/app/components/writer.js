@@ -7,7 +7,7 @@ import book from "/public/images/book_img.png";
 import eidos from "/public/images/Eidos.png";
 import eidosBig from "/public/images/eidosBig.png";
 import manning from "/public/images/manning_icon.svg";
-import amazon from "/public/images/amazon_icon.svg";
+// import amazon from "/public/images/amazon_icon.svg";
 import substack from "/public/images/substack.svg";
 import cloud from "/public/images/cloud.png";
 import cloud2x from "/public/images/cloud@2x.png";

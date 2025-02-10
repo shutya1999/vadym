@@ -4,10 +4,19 @@ import Link from "next/link";
 import { Pencil, Trash2 } from 'lucide-react';
 import { useEffect, useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
-import { log } from "node:console";
+
+type Post = {
+    id: number;
+    title?: string;
+    content?: string;
+    url?: string;
+    published?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+};
 
 export default function Home() {
-    const [posts, setPosts] = useState();
+    const [posts, setPosts] = useState<Post[]>([]);;
     const [loading, setLoading] = useState(true);
     // const { data: session } = useSession();
     // console.log(session);
@@ -45,8 +54,6 @@ export default function Home() {
             .catch(function (error) {
                 console.log(error);
             })
-
-        console.log(id);
     }
 
     if (loading) return <p>Завантаження...</p>;
@@ -85,7 +92,7 @@ export default function Home() {
                         </tr>
                     </thead>
                     <tbody>
-                        {posts.map((post: any) => (
+                        {posts && posts.map((post: Post) => (
                             <tr className="odd:bg-white even:bg-gray-50 border-b border-gray-200" key={post.id}>
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     <Link className="text-blue-500 hover:text-blue-700 underline" href={`/${post.url}`}>{post.title}</Link>

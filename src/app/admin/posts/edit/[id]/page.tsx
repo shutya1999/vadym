@@ -25,10 +25,11 @@ export default function EditPage() {
     useEffect(() => {
         axios.get(`${process.env.NEXT_PUBLIC_API_URL}posts/id/${params.id}`)
             .then(function (response) {
-                console.log(response);
+                // console.log(response);
                 if (response.status === 200) {
                     setPost(response.data);
                 }
+                // console.log(response);
             })
             .catch(function (error) {
                 setError(error.message);
@@ -41,8 +42,11 @@ export default function EditPage() {
     if (loading) return <p>Завантаження...</p>;
     if (error) return <p>{error}</p>;
 
+    console.log(post);
+    
+
     const handleFormSubmit = async (data: Post) => {
-        axios.put(`${process.env.NEXT_PUBLIC_API_URL}posts/id/${params.id}`, data)
+        axios.patch(`${process.env.NEXT_PUBLIC_API_URL}posts/id/${params.id}`, data)
             .then(function (response) {
                 if (response.status === 200) {
                     toast.success("Статтю успішно відредаговано!");

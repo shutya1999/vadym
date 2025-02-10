@@ -1,10 +1,8 @@
 import { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from '@/app/prisma/prisma-client';
-import {compare, bcrypt, hash, genSalt} from "bcrypt";
-
-import axios from 'axios';
-import { log } from 'node:console';
+// import {compare, bcrypt, hash, genSalt} from "bcrypt";
+import {compare} from "bcrypt";
 
 const auth: AuthOptions = {
     providers: [
@@ -27,19 +25,23 @@ const auth: AuthOptions = {
                     where: values,
                 });
 
+
                 if (!findUser) {
-                    console.log('2');
                     return null;
                 }
+
+                // const salt = await genSalt(10);
+                // const hashedPassword = await hash(credentials.password, salt);                
+                // console.log(hashedPassword);
 
                 const isPasswordValid = await compare(credentials.password, findUser.password);
 
                 if (!isPasswordValid) {
                     return null;
                 }
-
+            
                 return {
-                    id: findUser.id,
+                    id: String(findUser.id),
                     email: findUser.email,
                     name: findUser.fullName,
                     role: findUser.role,

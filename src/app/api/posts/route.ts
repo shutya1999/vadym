@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
                 return NextResponse.json({ message: "Такий запис вже існує", details: error.meta }, { status: 400 });
             }
         }
-        return NextResponse.json({ message: "Внутрішня помилка сервера", error: error.message });
+        return NextResponse.json({ message: "Внутрішня помилка сервера"});
     }
 }
 

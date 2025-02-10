@@ -18,15 +18,15 @@ const images = [
   { src: macPaw, alt: "Mac Paw logo", className: styles.macpawLogo },
   { src: epam, alt: "Epam logo" },
   { src: groupon, alt: "Groupon logo", className: styles.grouponLogo },
-  { src: prArmy, alt: "PR Army logo", className: styles.prarmyLogo},
+  { src: prArmy, alt: "PR Army logo", className: styles.prarmyLogo },
   { src: adjust, alt: "Adjust logo", className: styles.adjustLogo },
   { src: trinetix, alt: "Trinetix logo", className: styles.trinetixLogo },
   { src: olx, alt: "OLX logo", className: styles.olxLogo },
-  { src: firstAid, alt: "First Aid logo",  className: styles.firstAidLogo },
+  { src: firstAid, alt: "First Aid logo", className: styles.firstAidLogo },
 ];
 
 const Doer = () => {
-  const [columns, setColumns] = useState(2); 
+  const [columns, setColumns] = useState(2);
   const [orderedImages, setOrderedImages] = useState([]);
 
   const smallScreenOrder = [0, 5, 1, 6, 2, 7, 3, 8, 4];
@@ -45,10 +45,10 @@ const Doer = () => {
       }
     };
 
-    handleResize(); 
+    handleResize();
 
-    window.addEventListener("resize", handleResize); 
-    return () => window.removeEventListener("resize", handleResize); 
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const columnedImages = Array.from({ length: columns }, (_, colIndex) =>

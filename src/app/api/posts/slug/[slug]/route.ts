@@ -1,15 +1,16 @@
 // import { prisma } from "@/app/prisma/prisma-client";
-import { PrismaClient, Prisma } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 import { NextRequest, NextResponse } from "next/server";
 
 const client = new PrismaClient()
 
-export async function GET(req: NextRequest, { params }: { params: { blogSlug: string } }) {
+export async function GET(req: NextRequest) {
     try {
-        console.log(params.blogSlug);
+        const url = req.nextUrl.pathname.split('/').pop();
+
         const post = await client.post.findFirst({
             where: {
-                url: params.blogSlug,
+                url: url,
             },
         });
 

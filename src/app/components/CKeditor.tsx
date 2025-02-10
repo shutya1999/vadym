@@ -42,7 +42,6 @@ const LICENSE_KEY = 'GPL';
 
 
 import 'ckeditor5/ckeditor5.css';
-import { useState } from 'react';
 
 interface CustomEditorProps {
     editorData: string;
