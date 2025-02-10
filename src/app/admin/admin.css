@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: white) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ck-content {
+  min-height: 500px !important;
+}
+
+
+.ck-content {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+.ck-content p {
+  margin: 30px 0;
+}
+
+.ck-content ul,
+.ck-content ol {
+  margin: 30px 0;
+  padding-left: 15px;
+}
+
+.ck-content ul li,
+.ck-content ol li {
+  padding: 0 0 15px 10px;
+}
+
+.ck-content ul li:last-child,
+.ck-content ol li:last-child {
+  padding-bottom: 0;
+}
+
+.ck-content ul p {
+  padding-bottom: 15px;
+  margin: 0;
+}
+
+.ck-content ul li ul {
+  margin: 0;
+}
+
+.ck-content h1 {
+  font-size: 30px;
+  line-height: 39px;
+  margin: 20px 0 40px 0;
+  font-weight: 700;
+}
+
+.ck-content h2 {
+  font-size: 24px;
+  line-height: 30px;
+  margin: 10px 0 30px 0;
+  font-weight: 700;
+}
+
+.ck-content h3 {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+  margin: 10px 0 20px 0;
+}
+
+.ck-content img {
+  display: block;
+  margin: 10px 0;
+  width: 100%;
+  height: auto;
+}
+
+.ck-content a {
+  color: #3D43BC;
+  transition: all .3s;
+}
+
+.ck-content a:hover {
+  color: #5A64DC;
+}
+
+.ck-content a:active {
+  color: #262BA8;
+}
+
+.ck-content hr {
+  border: 0;
+  border-top: 1px solid #e6e6e6;
+  margin: 40px 0;
+}
+
+.ck-content br {
+  content: "";
+  margin: 4em;
+  display: block;
+  font-size: 24%;
+}
+
+.ck-content blockquote {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  background: var(--backgroundColorLight);
+  padding: 16px 20px 16px 54px;
+  position: relative;
+  font-style: italic;
+  margin: 30px 0;
+}
+
+.ck-content blockquote::before {
+  content: '📖';
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  width: 24px;
+  height: 24px;
+  font-size: 22px;
+  font-style: normal;
+}
