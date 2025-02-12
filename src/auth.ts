@@ -12,6 +12,7 @@ const auth: AuthOptions = {
                 login: { type: 'text' },
                 password: { type: 'password' }
             },
+
             authorize: async (credentials) => {
                 if (!credentials) {
                     return null;
