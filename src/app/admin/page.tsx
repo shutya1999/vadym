@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Pencil, Trash2 } from 'lucide-react';
 import { useEffect, useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
-import posts1 from "@/app/posts";
+// import posts1 from "@/app/posts";
 
 type Post = {
     id: number;
@@ -40,7 +40,7 @@ export default function Home() {
 
 
 
-        for (let post in posts1) {
+        // for (let post in posts1) {
             // console.log(posts1[post]);
 
             // const tdata = {
@@ -64,7 +64,7 @@ export default function Home() {
             //         console.log(error);
             //         toast.error(error.response.data.message + ` (${error.response.data.details.target[0]})`);
             //     });
-        }
+        // }
 
 
 
