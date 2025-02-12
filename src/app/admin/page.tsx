@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Pencil, Trash2 } from 'lucide-react';
 import { useEffect, useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
+import { format } from 'date-fns';
+import { uk } from 'date-fns/locale';
 // import posts1 from "@/app/posts";
 
 type Post = {
@@ -136,10 +138,10 @@ export default function Home() {
                                     {post.published ? <p className="text-green-400">Опубліковано</p> : <p className="text-red-400">Не опубліковано</p>}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {post.createdAt}
+                                    {post.createdAt ? format(new Date(post.createdAt), "dd.MM.yyyy HH:mm", { locale: uk }) : 'No date'}
                                 </td>
                                 <td className="px-6 py-4">
-                                    {post.updatedAt}
+                                    {post.updatedAt ? format(new Date(post.updatedAt), "dd.MM.yyyy HH:mm", { locale: uk }) : 'No date'}
                                 </td>
                                 <td className="px-6 py-4">
                                     <div className="flex gap-2">

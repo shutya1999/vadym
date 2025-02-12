@@ -4,7 +4,11 @@ import { PrismaClient, Prisma } from '@prisma/client';
 const client = new PrismaClient()
 
 export async function GET() {
-    const posts = await client.post.findMany();
+    const posts = await client.post.findMany({
+        orderBy: {
+            createdAt: 'desc', // сортування за спаданням (від новіших до старіших)
+        },
+    });
 
     return NextResponse.json(posts);
 }
