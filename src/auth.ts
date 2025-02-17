@@ -14,7 +14,7 @@ const auth: AuthOptions = {
             },
 
             authorize: async (credentials) => {
-                console.log(credentials);
+                // console.log(credentials);
                 if (!credentials) {
                     return null;
                 }
@@ -27,7 +27,7 @@ const auth: AuthOptions = {
                     where: values,
                 });
 
-                console.log(findUser);
+                // console.log(findUser);
 
 
                 if (!findUser) {
@@ -47,7 +47,7 @@ const auth: AuthOptions = {
                     return null;
                 }
 
-                console.log(isPasswordValid);
+                // console.log(isPasswordValid);
 
                 
 

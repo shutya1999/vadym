@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
 
         const post = await client.post.findFirst({
             where: {
-                id: Number(id),
+                id: Number(id)
             },
         });
 
