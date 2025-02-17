@@ -14,6 +14,7 @@ const auth: AuthOptions = {
             },
 
             authorize: async (credentials) => {
+                console.log(credentials);
                 if (!credentials) {
                     return null;
                 }
@@ -25,6 +26,8 @@ const auth: AuthOptions = {
                 const findUser = await prisma.user.findFirst({
                     where: values,
                 });
+
+                console.log(findUser);
 
 
                 if (!findUser) {
@@ -43,6 +46,8 @@ const auth: AuthOptions = {
                 if (!isPasswordValid) {
                     return null;
                 }
+
+                console.log(isPasswordValid);
 
                 
 

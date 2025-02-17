@@ -24,13 +24,13 @@ model User {
     fullName String
     email    String    @unique
     password String
-    role     UserRole  @default(user)
+    role     UserRole  @default(USER)
     verified DateTime?
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 }
 
 enum UserRole {
-    user
-    admin
+    USER
+    ADMIN
 }
