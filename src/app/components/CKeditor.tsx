@@ -12,7 +12,6 @@ import {
     BlockQuote,
     Base64UploadAdapter,
     CloudServices,
-    CKBox,
     Essentials,
     Heading,
     ImageInsert,
@@ -21,7 +20,7 @@ import {
     ImageResize,
     ImageStyle,
     ImageToolbar,
-    ImageUpload,
+    // ImageUpload,
     PictureEditing,
     Indent,
     IndentBlock,
@@ -34,10 +33,10 @@ import {
     Table,
     TableColumnResize,
     TableToolbar,
-    TextTransformation
+    TextTransformation,
+    // ImageInsertViaUrl
 } from 'ckeditor5';
 
-const CKBOX_TOKEN_URL = '';
 const LICENSE_KEY = 'GPL';
 
 
@@ -60,13 +59,8 @@ const CustomEditor: React.FC<CustomEditorProps> = ({ editorData, setEditorData }
             editor={ClassicEditor}
             onChange={handleEditorChange}
             config={{
-                //licenseKey: 'eyJhbGciOiJFUzI1NiJ9.eyJleHAiOjE3NDAzNTUxOTksImp0aSI6ImYzMzE1MzhlLThhMDItNGRhYS1hYTllLWJiY2VlNzE0ODU1YyIsInVzYWdlRW5kcG9pbnQiOiJodHRwczovL3Byb3h5LWV2ZW50LmNrZWRpdG9yLmNvbSIsImRpc3RyaWJ1dGlvbkNoYW5uZWwiOlsiY2xvdWQiLCJkcnVwYWwiLCJzaCJdLCJ3aGl0ZUxhYmVsIjp0cnVlLCJsaWNlbnNlVHlwZSI6InRyaWFsIiwiZmVhdHVyZXMiOlsiKiJdLCJ2YyI6IjViZTRjYzdkIn0.Z-IXVDLtUOUI89zpN_gz851qHyrfdkySMrfr62AGgjbejJzF0JjJkTUNjLK0hia0UWjEsk-K2dhz3iGzqqcRDQ', // Or 'GPL'.
                 licenseKey: LICENSE_KEY, // Or 'GPL'.
-                // plugins: [Essentials, Paragraph, Bold, Italic],
-                // toolbar: [ 'undo', 'redo', '|', 'bold', 'italic' ],
                 initialData: editorData,
-
-
                 plugins: [
                     Autoformat,
                     BlockQuote,
@@ -80,7 +74,7 @@ const CustomEditor: React.FC<CustomEditorProps> = ({ editorData, setEditorData }
                     ImageResize,
                     ImageStyle,
                     ImageToolbar,
-                    ImageUpload,
+                    // ImageUpload,
                     Base64UploadAdapter,
                     Indent,
                     IndentBlock,
@@ -96,12 +90,7 @@ const CustomEditor: React.FC<CustomEditorProps> = ({ editorData, setEditorData }
                     TableColumnResize,
                     TableToolbar,
                     TextTransformation,
-                    Underline,
-
-                    // Include CKBox plugin only if the CKBOX_TOKEN_URL is provided.
-                    ...(CKBOX_TOKEN_URL ? [
-                        CKBox
-                    ] : []),
+                    Underline
                 ],
                 toolbar: [
                     'undo',
@@ -115,8 +104,7 @@ const CustomEditor: React.FC<CustomEditorProps> = ({ editorData, setEditorData }
                     '|',
                     'link',
                     // 'uploadImage',
-                    'insertImage',
-                    'ckbox',
+                    'insertImage', // Вставка зображень через посилання
                     'insertTable',
                     'blockQuote',
                     'mediaEmbed',

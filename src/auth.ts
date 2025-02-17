@@ -2,7 +2,7 @@ import { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from '@/app/prisma/prisma-client';
 // import {compare, bcrypt, hash, genSalt} from "bcrypt";
-import {compare} from "bcrypt";
+import { compare } from "bcrypt";
 
 const auth: AuthOptions = {
     providers: [
@@ -31,6 +31,9 @@ const auth: AuthOptions = {
                     return null;
                 }
 
+                
+                
+
                 // const salt = await genSalt(10);
                 // const hashedPassword = await hash(credentials.password, salt);                
                 // console.log(hashedPassword);
@@ -40,7 +43,9 @@ const auth: AuthOptions = {
                 if (!isPasswordValid) {
                     return null;
                 }
-            
+
+                
+
                 return {
                     id: String(findUser.id),
                     email: findUser.email,
@@ -56,7 +61,38 @@ const auth: AuthOptions = {
         error: '/auth/error', // Error code passed in query string as ?error=
         verifyRequest: '/auth/verify-request', // (used for check email message)
         newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
-    }
+    },
+    secret: process.env.NEXTAUTH_SECRET,
+    session: {
+        strategy: 'jwt',
+    },
+    callbacks: {
+        async jwt ({ token }: { token: any }) {
+            const findUser = await prisma.user.findFirst({
+                where: {
+                    email: token.email,
+                },
+            })
+            
+            if (findUser) {
+                token.id = String(findUser.id);
+                token.email = findUser.email;
+                token.name = findUser.fullName;
+                token.role = findUser.role;
+            }
+
+            return token;
+        },
+        session: ({ token, session }: {token: any, session: any}) => {
+            if (session?.user) {
+                session.user.id = String(token.id);
+                session.user.role = token.role;
+            }
+        
+            return session;
+        },
+    },
+
 };
 
 export default auth;
