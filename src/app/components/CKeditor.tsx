@@ -34,6 +34,7 @@ import {
     TableColumnResize,
     TableToolbar,
     TextTransformation,
+    HorizontalLine
     // ImageInsertViaUrl
 } from 'ckeditor5';
 
@@ -90,7 +91,8 @@ const CustomEditor: React.FC<CustomEditorProps> = ({ editorData, setEditorData }
                     TableColumnResize,
                     TableToolbar,
                     TextTransformation,
-                    Underline
+                    Underline,
+                    HorizontalLine
                 ],
                 toolbar: [
                     'undo',
@@ -113,7 +115,9 @@ const CustomEditor: React.FC<CustomEditorProps> = ({ editorData, setEditorData }
                     'numberedList',
                     '|',
                     'outdent',
-                    'indent'
+                    'indent',
+                    '|',
+                    'horizontalLine'
                 ],
                 heading: {
                     options: [

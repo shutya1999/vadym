@@ -57,7 +57,17 @@ body {
 .ck-content {
   min-height: 500px !important;
 }
+.ck-content p{
+  /* min-height: 24px; */
+  /* margin: 20px 0 !important; */
+}
+.ck-content p br{
+  /* margin: 0;
+  font-size: 100%; */
+}
+.ck-content hr{
 
+}
 
 a {
   color: inherit;

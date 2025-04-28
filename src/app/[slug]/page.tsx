@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Header from "@/app/components/header";
 import Footer from "@/app/components/footer";
 import styles from "@/app/page.module.css";
+import { JSDOM } from "jsdom";
+
 
 import axios from 'axios';
 import { notFound } from 'next/navigation';
@@ -17,10 +19,22 @@ export async function generateMetadata(
         }
     }
 
+    // Парсимо HTML, щоб знайти перше зображення
+    let firstImageUrl: string | undefined;
+    if (post.content) {
+        const dom = new JSDOM(post.content);
+        const firstImg = dom.window.document.querySelector("img");
+        if (firstImg) {
+            firstImageUrl = firstImg.getAttribute("src") || undefined;
+        }
+        firstImageUrl = firstImageUrl ? "https://vadimgrin.com" + firstImageUrl : "https://vadimgrin.com/images/personal-social.png";
+    }
+
     return {
         title: post.title,
         openGraph: {
             url: "https://vadimgrin.com/" + post.url,
+            images: firstImageUrl,
         },
     }
 }

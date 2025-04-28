@@ -567,6 +567,12 @@
 .blog-editor figure{
   margin: 0 auto;
 }
+.blog-editor figcaption{
+  margin: 0 auto;
+  font-size: 12px;
+  text-align: center;
+  line-height: 120%;
+}
 .blog-editor img {
   display: block;
   margin: 10px auto;
@@ -588,7 +594,7 @@
 
 .blog-editor hr {
   border: 0;
-  border-top: 1px solid #e6e6e6;
+  border-top: 1px solid #323264;
   margin: 40px 0;
 }
 

@@ -56,13 +56,21 @@ const FileCart = ({ imageData }: { imageData: string }) => {
 
     return (
         <div className='flex flex-col border border-gray-300 p-2 rounded-lg hover:bg-gray-200'>
-            <Image className='w-full h-auto rounded' src={imageData} alt="" width={100} height={100} />
+            {/* <img src={process.env.NEXT_PUBLIC_API_URL + "assets" + imageData} alt="" /> */}
+            {/* <Image className='w-full h-auto rounded' src={imageData} alt="" width={100} height={100} /> */}
+
+            <Image
+                src={`/api/image?name=` + imageData}
+                alt="Uploaded"
+                width={500}
+                height={300}
+            />
 
             <div className="mt-2 flex-1 basis-full flex items-end justify-center">
                 {/* <p className='text-gray-700 text-xs mb-2'>File name</p> */}
 
                 <div className="flex align-center justify-center gap-2">
-                    <button className="text-blue-500 hover:text-blue-700" onClick={() => handleCopy(imageData)}>
+                    <button className="text-blue-500 hover:text-blue-700" onClick={() => handleCopy(`/api/image?name=` + imageData)}>
                         <Copy size={16} />
                     </button>
                     <button className="text-red-500 hover:text-red-700" onClick={() => handleDelete(imageData)}>
@@ -163,8 +171,8 @@ export default function FileUploader() {
 
         <>
             <div className='mb-5'>
-                <button 
-                    onClick={() => handleModalShow(!isOpen)} 
+                <button
+                    onClick={() => handleModalShow(!isOpen)}
                     className="bg-transparent hover:bg-green-500 text-green-500 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded" type="button">
                     Завантажити зображення
                 </button>

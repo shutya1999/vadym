@@ -52,14 +52,6 @@ export default function AuthPage() {
                 </div>
             </section>
             <Toaster />
-
-            {/* <form action={"/api/auth/callback/credentials"} onSubmit={handleSubmit}>
-                <input type='text' name="login" id="login" placeholder="Login" required />
-                <input type='password' name="password" id="password" placeholder="password" required />
-                <button type='submit'>Login</button>
-            </form>
-
-            <button onClick={() => signOut()}>Logout</button> */}
         </>
 
 

